@@ -1,0 +1,22 @@
+.catalog:
+  name: Redis
+  version: 3.0.5-rancher1
+  description: |
+    Redis in-memory key-value data store
+  uuid: redis-0
+  questions:
+    - variable: "config"
+      type: "multiline"
+      label: "List of config directives"
+      description: |
+        List of configuration variables in the format {parameter} {value}
+        one entry per line.
+      default: |
+        cluster-enabled yes
+        cluster-config-file nodes.conf
+        cluster-node-timeout 5000
+        appendonly yes
+redis-primary:
+  metadata:
+    config: |
+      ${config}

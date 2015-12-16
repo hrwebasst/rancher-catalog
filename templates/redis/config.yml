@@ -1,0 +1,5 @@
+name: Redis
+description: |
+  Redis in-memory key-value data store
+version: 3.0.5-rancher1
+category: Database

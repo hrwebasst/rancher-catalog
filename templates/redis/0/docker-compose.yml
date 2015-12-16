@@ -1,0 +1,23 @@
+redis-primary:
+  image: "redis:3.0.5"
+  stdin_open: true
+  ports:
+    - "6379:6379"
+  labels:
+    io.rancher.sidekicks: redis-config,redis-datavolume
+    io.rancher.container.hostname_override: container_name
+  volumes_from:
+    - redis-config
+    - redis-datavolume
+  command:
+  - redis-server
+  - /usr/share/redis/rancher/redis.conf
+redis-config:
+  image: rancher/redis-config:v0.1.0
+redis-datavolume:
+  image: "redis:3.0.5"
+  volumes:
+    - /data
+  labels:
+    io.rancher.container.start_once: true
+  entrypoint: /bin/true
